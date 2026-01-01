@@ -1,0 +1,3 @@
+# Farm Simulator for Multimedia Exercise
+
+このプロジェクトは、マルチメディア演習の最終課題としてPython3およびPyGameを利用して作成したシンプルな農業シミュレーションゲームです。
