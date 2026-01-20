@@ -24,6 +24,13 @@ class AssetManager:
         self.crop2 = None
         self.crop3 = None
 
+        self.hoe = None
+        self.watering = None
+        self.seed = None
+        self.scythe = None
+
+        self._initialized = True;
+
     def get_resource_path(self, filename):
         if getattr(sys, 'frozen', False):
             base_dir = os.path.dirname(sys.executable)
@@ -57,5 +64,9 @@ class AssetManager:
         self.crop1 = self._load_single("crop-1.png")
         self.crop2 = self._load_single("crop-2.png")
         self.crop3 = self._load_single("crop-3.png")
+        self.hoe = self._load_single("tools/hoe.png")
+        self.watering = self._load_single("tools/watering.png")
+        self.seed = self._load_single("tools/seed.png")
+        self.scythe = self._load_single("tools/scythe.png")
 
 assets = AssetManager()

@@ -24,6 +24,8 @@ def run():
         for _pos, tile in tiles.items():
             tile.draw(screen)
 
+        tool.draw(screen, (0, 0))
+
         pygame.display.flip()
 
         clock.tick(60)
