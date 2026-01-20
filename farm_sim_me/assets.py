@@ -18,6 +18,7 @@ class AssetManager:
         
         self.blank = None
         self.grass = None
+        self.land = None
         self.tilled = None
         self.hydrated = None
         self.crop1 = None
@@ -58,7 +59,9 @@ class AssetManager:
 
     def load_all(self):
         self.blank = pygame.Surface((32,32))
+        self.blank.fill((255,255,255))
         self.grass = self._load_single("grass.png")
+        self.land = self._load_single("land.png")
         self.tilled = self._load_single("tilled.png")
         self.hydrated = self._load_single("hydrated.png")
         self.crop1 = self._load_single("crop-1.png")
