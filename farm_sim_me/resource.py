@@ -31,9 +31,9 @@ class ResourceStorage:
         }
 
     def update(self, dt: int):
-        if self.rate == 10 and self.max_stamina > 500:
+        if self.rate == 10 and self.max_stamina >= 500:
             self.rate = 100
-        elif self.rate == 100 and self.max_stamina > 5000:
+        elif self.rate == 100 and self.max_stamina >= 5000:
             self.rate = 1000
 
     def draw(self, screen: Surface, pos):
