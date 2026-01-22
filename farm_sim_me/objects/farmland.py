@@ -3,6 +3,7 @@ import pygame
 from pygame import Surface
 from pygame.typing import RectLike
 
+from farm_sim_me.resource import resource_storage
 from farm_sim_me.objects.crop import Crop
 
 from . import tile
@@ -24,9 +25,9 @@ class FarmLand(tile.Tile):
         self.status = FarmLandStatus.LAND
         self.crop = None
 
-    def update(self):
+    def update(self, dt: int):
         if self.crop is not None:
-            self.crop.update()
+            self.crop.update(dt)
     
     def draw(self, screen):
         if self.status == FarmLandStatus.LAND:
@@ -44,12 +45,19 @@ class FarmLand(tile.Tile):
 
     def action(self, tool: ToolTypes):
         if self.status is FarmLandStatus.LAND and tool is ToolTypes.HOE:
-            self.status = FarmLandStatus.TILLED
+            if resource_storage.use_stamina(1):
+                self.status = FarmLandStatus.TILLED
         elif self.status is FarmLandStatus.TILLED and tool is ToolTypes.WATERING:
-            self.status = FarmLandStatus.HYDRATED
+            if resource_storage.use_stamina(1):
+                self.status = FarmLandStatus.HYDRATED
         elif self.status is FarmLandStatus.HYDRATED and tool is ToolTypes.SEED:
-            self.crop = Crop(self._pos)
-            self.status = FarmLandStatus.PLANTED
+            if resource_storage.has_seed("wheat"):
+                if resource_storage.use_stamina(1):
+                    resource_storage.consume_seed("wheat")
+                    self.crop = Crop(self._pos)
+                    self.status = FarmLandStatus.PLANTED
         elif self.status is FarmLandStatus.PLANTED and self.crop is not None and self.crop.can_harvest() and tool is ToolTypes.HARVEST:
-            self.status = FarmLandStatus.LAND
-            self.crop = None
+            if resource_storage.use_stamina(1):
+                self.status = FarmLandStatus.LAND
+                self.crop = None
+                resource_storage.add_harvest("wheat")

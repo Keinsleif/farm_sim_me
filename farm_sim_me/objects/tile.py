@@ -9,7 +9,7 @@ class Tile:
         self.image = img
         self._pos = pos
 
-    def update(self):
+    def update(self, dt: int):
         pass
 
     def draw(self, screen: Surface):

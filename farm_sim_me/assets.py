@@ -16,6 +16,9 @@ class AssetManager:
         if self._initialized:
             return
         
+        self.font_title = None
+        self.font_desc = None
+        
         self.blank = None
         self.grass = None
         self.land = None
@@ -29,6 +32,11 @@ class AssetManager:
         self.watering = None
         self.seed = None
         self.scythe = None
+
+        self.store_sell = None
+        self.store_buy = None
+        self.upgrade_stamina = None
+        self.sleep = None
 
         self._initialized = True;
 
@@ -58,6 +66,9 @@ class AssetManager:
             return pygame.Surface((32, 32))
 
     def load_all(self):
+        self.font_title = pygame.font.Font(self.get_resource_path("NotoSansJP-Bold.ttf"), 24)
+        self.font_desc = pygame.font.Font(self.get_resource_path("NotoSansJP-Regular.ttf"), 18)
+
         self.blank = pygame.Surface((32,32))
         self.blank.fill((255,255,255))
         self.grass = self._load_single("grass.png")
@@ -71,5 +82,9 @@ class AssetManager:
         self.watering = self._load_single("tools/watering.png")
         self.seed = self._load_single("tools/seed.png")
         self.scythe = self._load_single("tools/scythe.png")
+        self.store_buy = self._load_single("store_buy.png")
+        self.store_sell = self._load_single("store_sell.png")
+        self.upgrade_stamina = self._load_single("upgrade_stamina.png")
+        self.sleep = self._load_single("sleep.png")
 
 assets = AssetManager()

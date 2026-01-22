@@ -12,7 +12,7 @@ class Crop(Tile):
         super().__init__(assets.crop1, pos)
         self._stage = 0
 
-    def update(self):
+    def update(self, dt: int):
         if self._stage < 2 and random.random() < 0.0083:
             self._stage += 1
             
