@@ -21,8 +21,14 @@ class SellStoreTile(Tile):
 
 class BuyStoreTile(Tile):
     def __init__(self, pos: RectLike):
-        self.text = assets.font_desc.render("小麦の種x10を購入→", True, (255, 255, 255))
+        self.rate = resource_storage.rate
+        self.text = assets.font_desc.render(f"小麦の種x{self.rate}を購入→", True, (255, 255, 255))
         super().__init__(assets.grass, pos)
+
+    def update(self, dt: int):
+        if self.rate != resource_storage.rate:
+            self.rate = resource_storage
+            self.text = assets.font_desc.render(f"小麦の種x{self.rate}を購入→", True, (255, 255, 255))
 
     def draw(self, screen):
         super().draw(screen)
@@ -34,8 +40,14 @@ class BuyStoreTile(Tile):
 
 class BuyStaminaTile(Tile):
     def __init__(self, pos: RectLike):
-        self.text = assets.font_desc.render("小麦x10で最大スタミナx10増加→", True, (255, 255, 255))
+        self.rate = resource_storage.rate
+        self.text = assets.font_desc.render(f"小麦x{self.rate}で最大スタミナx{self.rate}増加→", True, (255, 255, 255))
         super().__init__(assets.grass, pos)
+
+    def update(self, dt: int):
+        if self.rate != resource_storage.rate:
+            self.rate = resource_storage
+            self.text = assets.font_desc.render(f"小麦x{self.rate}で最大スタミナx{self.rate}増加→", True, (255, 255, 255))
 
     def draw(self, screen):
         super().draw(screen)

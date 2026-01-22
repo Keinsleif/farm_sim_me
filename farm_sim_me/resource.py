@@ -19,6 +19,8 @@ class ResourceStorage:
 
         self.money = -5000  # 所持金
 
+        self.rate = 10
+
         self.day = 1
         self.max_stamina = 100
         self.current_stamina = 100
@@ -29,7 +31,10 @@ class ResourceStorage:
         }
 
     def update(self, dt: int):
-        pass
+        if self.rate == 10 and self.max_stamina > 500:
+            self.rate = 100
+        elif self.rate == 100 and self.max_stamina > 5000:
+            self.rate = 1000
 
     def draw(self, screen: Surface, pos):
         stats_str = f"日数：{self.day}日"
@@ -56,10 +61,11 @@ class ResourceStorage:
     def upgrade_stamina(self) -> bool:
         """
         小麦を消費してスタミナの最大値を上昇させる
+        上昇量：self.rate
         """
-        if self.inventory.get("wheat", 0) >= 10:
-            self.inventory["wheat"] -= 10
-            self.max_stamina += 10
+        if self.inventory.get("wheat", 0) >= self.rate:
+            self.inventory["wheat"] -= self.rate
+            self.max_stamina += self.rate
 
     def next_day(self):
         """一日を進める"""
@@ -103,9 +109,12 @@ class ResourceStorage:
             return earn
         return 0
 
-    def buy_seed(self, crop_type, amount = 10):
+    def buy_seed(self, crop_type, amount: None | int = None):
         prices = {"seed_wheat": 10}
         price = prices.get(f"seed_{crop_type}", 0)
+
+        if amount is None:
+            amount = self.rate
 
         resource_storage.money -= price * amount
         self.inventory[f"seed_{crop_type}"] += amount
