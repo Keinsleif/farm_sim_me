@@ -74,6 +74,8 @@ def run():
         for _pos, tile in tiles.items():
             tile.update(clock.get_time())
 
+        resource_storage.update()
+
         if resource_storage.money > 100000:
             phase = "end"
 
