@@ -46,7 +46,8 @@ def run():
     running = True
     tool = ToolTypes.HOE
     tool_tooltip = assets.font_desc.render("右クリックでツール切り替え ", True, (255, 255, 255))
-    phase = "normal"
+    clear_text = assets.font_title.render(f"GAME CLEAR!\n\nかかった日数: {resource_storage.day}", True, (0, 0, 0))
+    phase = "end"
     mousedownTileStartPos = None
     mousedownTileEndPos = None
     while running:
@@ -77,10 +78,9 @@ def run():
             phase = "end"
 
         if phase == "end":
-            text = assets.font_title.render(f"GAME CLEAR!\nかかった日数: {resource_storage.day}", True, (0, 0, 0))
             screen.fill((255,255,255))
-            text_rect = text.get_rect(center = (size[0] / 2, size[1] / 2))
-            screen.blit(text, text_rect)
+            text_rect = clear_text.get_rect(center = (size[0] / 2, size[1] / 2))
+            screen.blit(clear_text, text_rect)
         else:
             for _pos, tile in tiles.items():
                 tile.draw(screen)
