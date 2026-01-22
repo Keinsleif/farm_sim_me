@@ -47,7 +47,7 @@ def run():
     tool = ToolTypes.HOE
     tool_tooltip = assets.font_desc.render("右クリックでツール切り替え ", True, (255, 255, 255))
     clear_text = assets.font_title.render(f"GAME CLEAR!\n\nかかった日数: {resource_storage.day}", True, (0, 0, 0))
-    phase = "end"
+    phase = "normal"
     mousedownTileStartPos = None
     mousedownTileEndPos = None
     while running:
