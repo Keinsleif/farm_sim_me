@@ -6,7 +6,7 @@
 
 ゲーム画面は以下のようになっています。
 
-<img width="1282" height="752" alt="image" src="https://github.com/user-attachments/assets/61a3871b-8aac-4dac-90d8-e919e9cacfe4" />
+![gamescreen](https://github.com/user-attachments/assets/61a3871b-8aac-4dac-90d8-e919e9cacfe4)
 
 ### 情報
 
@@ -97,7 +97,7 @@
    pip install pygame
    ```
 
-5. モジュールをスクリプトとして実行するか、main.pyを実行します。
+4. モジュールをスクリプトとして実行するか、main.pyを実行します。
 
     ```sh
     python -m farm_sim_me
@@ -111,6 +111,7 @@
 
 > [!NOTE]
 > uvを利用している場合は、3以降の手順を以下のように置き換えます。
+>
 > ```sh
 > uv run -m farm_sim_me
 > ```
