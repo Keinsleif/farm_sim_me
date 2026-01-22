@@ -27,7 +27,7 @@ class BuyStoreTile(Tile):
 
     def update(self, dt: int):
         if self.rate != resource_storage.rate:
-            self.rate = resource_storage
+            self.rate = resource_storage.rate
             self.text = assets.font_desc.render(f"小麦の種x{self.rate}を購入→", True, (255, 255, 255))
 
     def draw(self, screen):
@@ -46,7 +46,7 @@ class BuyStaminaTile(Tile):
 
     def update(self, dt: int):
         if self.rate != resource_storage.rate:
-            self.rate = resource_storage
+            self.rate = resource_storage.rate
             self.text = assets.font_desc.render(f"小麦x{self.rate}で最大スタミナx{self.rate}増加→", True, (255, 255, 255))
 
     def draw(self, screen):
